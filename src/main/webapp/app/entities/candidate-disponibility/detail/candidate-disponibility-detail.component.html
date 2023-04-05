@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="candidateDisponibility">
+      <h2 data-cy="candidateDisponibilityDetailsHeading">
+        <span jhiTranslate="flashJobsApp.candidateDisponibility.detail.title">Candidate Disponibility</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ candidateDisponibility.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.candidateDisponibility.dipoTime">Dipo Time</span></dt>
+        <dd>
+          <span>{{ candidateDisponibility.dipoTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.candidateDisponibility.dispoPeriod">Dispo Period</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'flashJobsApp.TimeStatus.' + candidateDisponibility.dispoPeriod }}">{{
+            candidateDisponibility.dispoPeriod
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.candidateDisponibility.candidate">Candidate</span></dt>
+        <dd>
+          <div *ngIf="candidateDisponibility.candidate">
+            <a [routerLink]="['/candidate', candidateDisponibility.candidate.id, 'view']">{{ candidateDisponibility.candidate.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/candidate-disponibility', candidateDisponibility.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

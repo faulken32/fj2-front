@@ -1,0 +1,78 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="job">
+      <h2 data-cy="jobDetailsHeading"><span jhiTranslate="flashJobsApp.job.detail.title">Job</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ job.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.job.name">Name</span></dt>
+        <dd>
+          <span>{{ job.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.job.valid">Valid</span></dt>
+        <dd>
+          <span>{{ job.valid }}</span>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.job.validUntil">Valid Until</span></dt>
+        <dd>
+          <span>{{ job.validUntil | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.job.salary">Salary</span></dt>
+        <dd>
+          <span>{{ job.salary }}</span>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.job.prime">Prime</span></dt>
+        <dd>
+          <span>{{ job.prime }}</span>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.job.address">Address</span></dt>
+        <dd>
+          <div *ngIf="job.address">
+            <a [routerLink]="['/address', job.address.id, 'view']">{{ job.address.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.job.contact">Contact</span></dt>
+        <dd>
+          <div *ngIf="job.contact">
+            <a [routerLink]="['/contact', job.contact.id, 'view']">{{ job.contact.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.job.jobSubCat">Job Sub Cat</span></dt>
+        <dd>
+          <div *ngIf="job.jobSubCat">
+            <a [routerLink]="['/job-sub-cat', job.jobSubCat.id, 'view']">{{ job.jobSubCat.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.job.candidate">Candidate</span></dt>
+        <dd>
+          <div *ngIf="job.candidate">
+            <a [routerLink]="['/candidate', job.candidate.id, 'view']">{{ job.candidate.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.job.compagny">Compagny</span></dt>
+        <dd>
+          <div *ngIf="job.compagny">
+            <a [routerLink]="['/compagny', job.compagny.id, 'view']">{{ job.compagny.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/job', job.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

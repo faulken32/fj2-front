@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="candidate">
+      <h2 data-cy="candidateDetailsHeading"><span jhiTranslate="flashJobsApp.candidate.detail.title">Candidate</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ candidate.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.candidate.userId">User Id</span></dt>
+        <dd>
+          <span>{{ candidate.userId }}</span>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.candidate.name">Name</span></dt>
+        <dd>
+          <span>{{ candidate.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.candidate.phone">Phone</span></dt>
+        <dd>
+          <span>{{ candidate.phone }}</span>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.candidate.valid">Valid</span></dt>
+        <dd>
+          <span>{{ candidate.valid }}</span>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.candidate.validUntil">Valid Until</span></dt>
+        <dd>
+          <span>{{ candidate.validUntil | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.candidate.candidatePreference">Candidate Preference</span></dt>
+        <dd>
+          <div *ngIf="candidate.candidatePreference">
+            <a [routerLink]="['/candidate-preference', candidate.candidatePreference.id, 'view']">{{ candidate.candidatePreference.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.candidate.cv">Cv</span></dt>
+        <dd>
+          <div *ngIf="candidate.cv">
+            <a [routerLink]="['/cv', candidate.cv.id, 'view']">{{ candidate.cv.name }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/candidate', candidate.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

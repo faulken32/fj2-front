@@ -1,0 +1,106 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-candidate-heading" data-cy="CandidateCreateUpdateHeading" jhiTranslate="flashJobsApp.candidate.home.createOrEditLabel">
+        Create or edit a Candidate
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="flashJobsApp.candidate.userId" for="field_userId">User Id</label>
+          <input type="number" class="form-control" name="userId" id="field_userId" data-cy="userId" formControlName="userId" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="flashJobsApp.candidate.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="flashJobsApp.candidate.phone" for="field_phone">Phone</label>
+          <input type="text" class="form-control" name="phone" id="field_phone" data-cy="phone" formControlName="phone" />
+          <div *ngIf="editForm.get('phone')!.invalid && (editForm.get('phone')!.dirty || editForm.get('phone')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('phone')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="flashJobsApp.candidate.valid" for="field_valid">Valid</label>
+          <input type="checkbox" class="form-check" name="valid" id="field_valid" data-cy="valid" formControlName="valid" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="flashJobsApp.candidate.validUntil" for="field_validUntil">Valid Until</label>
+          <div class="d-flex">
+            <input
+              id="field_validUntil"
+              data-cy="validUntil"
+              type="datetime-local"
+              class="form-control"
+              name="validUntil"
+              formControlName="validUntil"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="flashJobsApp.candidate.candidatePreference" for="field_candidatePreference"
+            >Candidate Preference</label
+          >
+          <select
+            class="form-control"
+            id="field_candidatePreference"
+            data-cy="candidatePreference"
+            name="candidatePreference"
+            formControlName="candidatePreference"
+            [compareWith]="compareCandidatePreference"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="candidatePreferenceOption" *ngFor="let candidatePreferenceOption of candidatePreferencesCollection">
+              {{ candidatePreferenceOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="flashJobsApp.candidate.cv" for="field_cv">Cv</label>
+          <select class="form-control" id="field_cv" data-cy="cv" name="cv" formControlName="cv" [compareWith]="compareCv">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="cvOption" *ngFor="let cvOption of cvsSharedCollection">{{ cvOption.name }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

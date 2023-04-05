@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="jobSubCat">
+      <h2 data-cy="jobSubCatDetailsHeading"><span jhiTranslate="flashJobsApp.jobSubCat.detail.title">Job Sub Cat</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ jobSubCat.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.jobSubCat.name">Name</span></dt>
+        <dd>
+          <span>{{ jobSubCat.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.jobSubCat.description">Description</span></dt>
+        <dd>
+          <span>{{ jobSubCat.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.jobSubCat.jobCat">Job Cat</span></dt>
+        <dd>
+          <div *ngIf="jobSubCat.jobCat">
+            <a [routerLink]="['/job-cat', jobSubCat.jobCat.id, 'view']">{{ jobSubCat.jobCat.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.jobSubCat.candidatePreference">Candidate Preference</span></dt>
+        <dd>
+          <div *ngIf="jobSubCat.candidatePreference">
+            <a [routerLink]="['/candidate-preference', jobSubCat.candidatePreference.id, 'view']">{{ jobSubCat.candidatePreference.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/job-sub-cat', jobSubCat.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

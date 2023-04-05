@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="compagny">
+      <h2 data-cy="compagnyDetailsHeading"><span jhiTranslate="flashJobsApp.compagny.detail.title">Compagny</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ compagny.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.compagny.name">Name</span></dt>
+        <dd>
+          <span>{{ compagny.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.compagny.description">Description</span></dt>
+        <dd>
+          <span>{{ compagny.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.compagny.phone">Phone</span></dt>
+        <dd>
+          <span>{{ compagny.phone }}</span>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.compagny.logoUrl">Logo Url</span></dt>
+        <dd>
+          <span>{{ compagny.logoUrl }}</span>
+        </dd>
+        <dt><span jhiTranslate="flashJobsApp.compagny.address">Address</span></dt>
+        <dd>
+          <div *ngIf="compagny.address">
+            <a [routerLink]="['/address', compagny.address.id, 'view']">{{ compagny.address.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/compagny', compagny.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

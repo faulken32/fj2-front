@@ -1,0 +1,10 @@
+{
+  "flashJobsApp": {
+    "TimeStatus": {
+      "null": "",
+      "MORNING": "MORNING",
+      "AFTERNOON": "AFTERNOON",
+      "NIGHT": "NIGHT"
+    }
+  }
+}

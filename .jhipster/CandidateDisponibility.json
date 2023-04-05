@@ -1,0 +1,35 @@
+{
+  "applications": ["flashJobs"],
+  "changelogDate": "20230405141308",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "candidate_disponibility",
+  "fields": [
+    {
+      "fieldName": "dipoTime",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dispoPeriod",
+      "fieldType": "TimeStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "MORNING,AFTERNOON,NIGHT"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "CandidateDisponibility",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "candidate",
+      "otherEntityRelationshipName": "candidateDisponibility",
+      "relationshipName": "candidate",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl",
+  "skipServer": true
+}

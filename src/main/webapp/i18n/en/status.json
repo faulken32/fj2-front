@@ -1,0 +1,10 @@
+{
+  "flashJobsApp": {
+    "Status": {
+      "null": "",
+      "ACCEPTED": "ACCEPTED",
+      "REJECTED": "REJECTED",
+      "PENDING": "PENDING"
+    }
+  }
+}

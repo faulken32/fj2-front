@@ -1,0 +1,178 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-job-heading" data-cy="JobCreateUpdateHeading" jhiTranslate="flashJobsApp.job.home.createOrEditLabel">
+        Create or edit a Job
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="flashJobsApp.job.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="flashJobsApp.job.valid" for="field_valid">Valid</label>
+          <input type="checkbox" class="form-check" name="valid" id="field_valid" data-cy="valid" formControlName="valid" />
+          <div *ngIf="editForm.get('valid')!.invalid && (editForm.get('valid')!.dirty || editForm.get('valid')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('valid')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="flashJobsApp.job.validUntil" for="field_validUntil">Valid Until</label>
+          <div class="d-flex">
+            <input
+              id="field_validUntil"
+              data-cy="validUntil"
+              type="datetime-local"
+              class="form-control"
+              name="validUntil"
+              formControlName="validUntil"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('validUntil')!.invalid && (editForm.get('validUntil')!.dirty || editForm.get('validUntil')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('validUntil')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('validUntil')?.errors?.datetimelocal"
+              jhiTranslate="entity.validation.datetimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="flashJobsApp.job.salary" for="field_salary">Salary</label>
+          <input type="number" class="form-control" name="salary" id="field_salary" data-cy="salary" formControlName="salary" />
+          <div *ngIf="editForm.get('salary')!.invalid && (editForm.get('salary')!.dirty || editForm.get('salary')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('salary')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('salary')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="flashJobsApp.job.prime" for="field_prime">Prime</label>
+          <input type="number" class="form-control" name="prime" id="field_prime" data-cy="prime" formControlName="prime" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="flashJobsApp.job.address" for="field_address">Address</label>
+          <select
+            class="form-control"
+            id="field_address"
+            data-cy="address"
+            name="address"
+            formControlName="address"
+            [compareWith]="compareAddress"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="addressOption" *ngFor="let addressOption of addressesCollection">{{ addressOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="flashJobsApp.job.contact" for="field_contact">Contact</label>
+          <select
+            class="form-control"
+            id="field_contact"
+            data-cy="contact"
+            name="contact"
+            formControlName="contact"
+            [compareWith]="compareContact"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="contactOption" *ngFor="let contactOption of contactsCollection">{{ contactOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="flashJobsApp.job.jobSubCat" for="field_jobSubCat">Job Sub Cat</label>
+          <select
+            class="form-control"
+            id="field_jobSubCat"
+            data-cy="jobSubCat"
+            name="jobSubCat"
+            formControlName="jobSubCat"
+            [compareWith]="compareJobSubCat"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="jobSubCatOption" *ngFor="let jobSubCatOption of jobSubCatsSharedCollection">{{ jobSubCatOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="flashJobsApp.job.candidate" for="field_candidate">Candidate</label>
+          <select
+            class="form-control"
+            id="field_candidate"
+            data-cy="candidate"
+            name="candidate"
+            formControlName="candidate"
+            [compareWith]="compareCandidate"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="candidateOption" *ngFor="let candidateOption of candidatesSharedCollection">{{ candidateOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="flashJobsApp.job.compagny" for="field_compagny">Compagny</label>
+          <select
+            class="form-control"
+            id="field_compagny"
+            data-cy="compagny"
+            name="compagny"
+            formControlName="compagny"
+            [compareWith]="compareCompagny"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="compagnyOption" *ngFor="let compagnyOption of compagniesSharedCollection">{{ compagnyOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

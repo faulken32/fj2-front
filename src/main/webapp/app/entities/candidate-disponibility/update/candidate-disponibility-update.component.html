@@ -1,0 +1,105 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-candidate-disponibility-heading"
+        data-cy="CandidateDisponibilityCreateUpdateHeading"
+        jhiTranslate="flashJobsApp.candidateDisponibility.home.createOrEditLabel"
+      >
+        Create or edit a Candidate Disponibility
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="flashJobsApp.candidateDisponibility.dipoTime" for="field_dipoTime">Dipo Time</label>
+          <div class="d-flex">
+            <input
+              id="field_dipoTime"
+              data-cy="dipoTime"
+              type="datetime-local"
+              class="form-control"
+              name="dipoTime"
+              formControlName="dipoTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('dipoTime')!.invalid && (editForm.get('dipoTime')!.dirty || editForm.get('dipoTime')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dipoTime')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('dipoTime')?.errors?.datetimelocal"
+              jhiTranslate="entity.validation.datetimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="flashJobsApp.candidateDisponibility.dispoPeriod" for="field_dispoPeriod"
+            >Dispo Period</label
+          >
+          <select class="form-control" name="dispoPeriod" formControlName="dispoPeriod" id="field_dispoPeriod" data-cy="dispoPeriod">
+            <option [ngValue]="null">{{ 'flashJobsApp.TimeStatus.null' | translate }}</option>
+            <option *ngFor="let timeStatus of timeStatusValues" [value]="timeStatus">
+              {{ 'flashJobsApp.TimeStatus.' + timeStatus | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('dispoPeriod')!.invalid && (editForm.get('dispoPeriod')!.dirty || editForm.get('dispoPeriod')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dispoPeriod')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="flashJobsApp.candidateDisponibility.candidate" for="field_candidate">Candidate</label>
+          <select
+            class="form-control"
+            id="field_candidate"
+            data-cy="candidate"
+            name="candidate"
+            formControlName="candidate"
+            [compareWith]="compareCandidate"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="candidateOption" *ngFor="let candidateOption of candidatesSharedCollection">{{ candidateOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

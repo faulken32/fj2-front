@@ -1,0 +1,145 @@
+<div>
+  <h2 id="page-heading" data-cy="CandidateHeading">
+    <span jhiTranslate="flashJobsApp.candidate.home.title">Candidates</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="flashJobsApp.candidate.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-candidate"
+        [routerLink]="['/candidate/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="flashJobsApp.candidate.home.createLabel"> Create a new Candidate </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="candidates?.length === 0">
+    <span jhiTranslate="flashJobsApp.candidate.home.notFound">No Candidates found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="candidates && candidates.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="userId">
+            <div class="d-flex">
+              <span jhiTranslate="flashJobsApp.candidate.userId">User Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="name">
+            <div class="d-flex">
+              <span jhiTranslate="flashJobsApp.candidate.name">Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="phone">
+            <div class="d-flex">
+              <span jhiTranslate="flashJobsApp.candidate.phone">Phone</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="valid">
+            <div class="d-flex">
+              <span jhiTranslate="flashJobsApp.candidate.valid">Valid</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="validUntil">
+            <div class="d-flex">
+              <span jhiTranslate="flashJobsApp.candidate.validUntil">Valid Until</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="candidatePreference.id">
+            <div class="d-flex">
+              <span jhiTranslate="flashJobsApp.candidate.candidatePreference">Candidate Preference</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="cv.name">
+            <div class="d-flex">
+              <span jhiTranslate="flashJobsApp.candidate.cv">Cv</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody
+        infinite-scroll
+        (scrolled)="loadPage(page + 1)"
+        [infiniteScrollDisabled]="page - 1 >= links['last']"
+        [infiniteScrollDistance]="0"
+      >
+        <tr *ngFor="let candidate of candidates; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/candidate', candidate.id, 'view']">{{ candidate.id }}</a>
+          </td>
+          <td>{{ candidate.userId }}</td>
+          <td>{{ candidate.name }}</td>
+          <td>{{ candidate.phone }}</td>
+          <td>{{ candidate.valid }}</td>
+          <td>{{ candidate.validUntil | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="candidate.candidatePreference">
+              <a [routerLink]="['/candidate-preference', candidate.candidatePreference.id, 'view']">{{
+                candidate.candidatePreference.id
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="candidate.cv">
+              <a [routerLink]="['/cv', candidate.cv.id, 'view']">{{ candidate.cv.name }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/candidate', candidate.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/candidate', candidate.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(candidate)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

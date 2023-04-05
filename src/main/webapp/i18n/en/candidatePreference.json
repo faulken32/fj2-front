@@ -1,0 +1,26 @@
+{
+  "flashJobsApp": {
+    "candidatePreference": {
+      "home": {
+        "title": "Candidate Preferences",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Candidate Preference",
+        "createOrEditLabel": "Create or edit a Candidate Preference",
+        "notFound": "No Candidate Preferences found"
+      },
+      "created": "A new Candidate Preference is created with identifier {{ param }}",
+      "updated": "A Candidate Preference is updated with identifier {{ param }}",
+      "deleted": "A Candidate Preference is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Candidate Preference {{ id }}?"
+      },
+      "detail": {
+        "title": "Candidate Preference"
+      },
+      "id": "ID",
+      "distance": "Distance",
+      "jobSubCat": "Job Sub Cat",
+      "candidate": "Candidate"
+    }
+  }
+}
