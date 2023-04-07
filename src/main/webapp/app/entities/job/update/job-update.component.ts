@@ -109,10 +109,10 @@ export class JobUpdateComponent implements OnInit {
       this.jobSubCatsSharedCollection,
       job.jobSubCat
     );
-    this.candidatesSharedCollection = this.candidateService.addCandidateToCollectionIfMissing<ICandidate>(
-      this.candidatesSharedCollection,
-      job.candidate
-    );
+    // this.candidatesSharedCollection = this.candidateService.addCandidateToCollectionIfMissing<ICandidate>(
+    //   this.candidatesSharedCollection,
+    //   job.candidate
+    // );
     this.compagniesSharedCollection = this.compagnyService.addCompagnyToCollectionIfMissing<ICompagny>(
       this.compagniesSharedCollection,
       job.compagny
@@ -142,15 +142,15 @@ export class JobUpdateComponent implements OnInit {
       )
       .subscribe((jobSubCats: IJobSubCat[]) => (this.jobSubCatsSharedCollection = jobSubCats));
 
-    this.candidateService
-      .query()
-      .pipe(map((res: HttpResponse<ICandidate[]>) => res.body ?? []))
-      .pipe(
-        map((candidates: ICandidate[]) =>
-          this.candidateService.addCandidateToCollectionIfMissing<ICandidate>(candidates, this.job?.candidate)
-        )
-      )
-      .subscribe((candidates: ICandidate[]) => (this.candidatesSharedCollection = candidates));
+    // this.candidateService
+    //   .query()
+    //   .pipe(map((res: HttpResponse<ICandidate[]>) => res.body ?? []))
+    //   .pipe(
+    //     map((candidates: ICandidate[]) =>
+    //       this.candidateService.addCandidateToCollectionIfMissing<ICandidate>(candidates, this.job?.candidate)
+    //     )
+    //   )
+    //   .subscribe((candidates: ICandidate[]) => (this.candidatesSharedCollection = candidates));
 
     this.compagnyService
       .query()

@@ -39,7 +39,7 @@
     "jhiPrefix": "jhi",
     "jhipsterVersion": "7.9.3",
     "languages": ["en"],
-    "lastLiquibaseTimestamp": 1680704348000,
+    "lastLiquibaseTimestamp": 1680708362000,
     "messageBroker": false,
     "nativeLanguage": "en",
     "otherModules": [],

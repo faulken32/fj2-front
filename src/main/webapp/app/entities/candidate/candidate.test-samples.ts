@@ -21,7 +21,7 @@ export const sampleWithFullData: ICandidate = {
   name: 'Honduras olive Awesome',
   phone: '882.342.3359 x727',
   valid: true,
-  validUntil: dayjs('2023-04-04T14:18'),
+  validUntil: dayjs('2023-04-04T15:35'),
 };
 
 export const sampleWithNewData: NewCandidate = {

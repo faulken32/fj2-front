@@ -14,7 +14,7 @@ export const sampleWithPartialData: IApplication = {
 
 export const sampleWithFullData: IApplication = {
   id: 17599,
-  date: dayjs('2023-04-05T06:40'),
+  date: dayjs('2023-04-05T07:57'),
   status: Status['PENDING'],
 };
 

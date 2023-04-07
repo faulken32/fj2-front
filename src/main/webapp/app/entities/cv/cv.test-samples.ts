@@ -16,7 +16,7 @@ export const sampleWithPartialData: ICv = {
 export const sampleWithFullData: ICv = {
   id: 55243,
   name: 'Markets indexing wireless',
-  updateDate: dayjs('2023-04-05T08:55'),
+  updateDate: dayjs('2023-04-05T10:05'),
   format: 'Frozen withdrawal hacking',
 };
 

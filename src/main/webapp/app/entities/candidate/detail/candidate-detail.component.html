@@ -58,3 +58,94 @@
     </div>
   </div>
 </div>
+
+<div class="row mt-5">
+  <div class="col-12">
+    <div class="row mt-5">
+      <div class="col-6 p-2">
+        <h4><span>Bonjour </span> <span class="text-primary"> </span></h4>
+      </div>
+
+      <div class="col-6 text-right">
+        <img class="rounded-pill" width="50px" src="../../../../assets/moi.png" />
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-6 p-2">
+        <h5>Vos Informations</h5>
+      </div>
+
+      <div class="col-6 text-right">
+        <button routerLink="/account/edit" class="btn btn-primary rounded-circle">
+          <span class="oi oi-pencil" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-12">
+        <div class="mt-5">
+          <p>Mail : <span class="text-primary"> </span></p>
+          <!--          <p *ngIf="candidate.status">Status :-->
+          <!--            <span class="badge badge-primary p-1">-->
+          <!--                 Actif-->
+          <!--          </span>-->
+          <!--          <p *ngIf="!candidate.status">Status :-->
+          <!--            <span class="badge badge-primary p-1">-->
+          <!--                 En pause-->
+          <!--          </span>-->
+          <!--          </p>-->
+          <p>
+            Numéro de téléphone : <span class="text-primary">{{ candidate!.phone }}</span>
+          </p>
+          <p>Adresse : <span class="text-primary"></span></p>
+
+          <!--          <p>Zone de recherche: <span class="text-primary"></span>-->
+          <!--            <span *ngIf="candidate.searchDep">-->
+          <!--                <span class="badge badge-primary">{{actor.fc.features[0].properties.postcode.substr(0 , 2 )}}</span>-->
+          <!--            </span>-->
+          <!--            <span *ngIf="candidate.searchCity">-->
+          <!--                <span class="badge badge-primary">{{actor.fc.features[0].properties.city}}</span>-->
+          <!--            </span>-->
+
+          <!--            <span class="badge badge-primary">{{actor.searchKm}}Km</span>-->
+          <!--          </p>-->
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-12">
+        <h5>Votre type de recherche</h5>
+        <div class="mt-5">
+          <p>Secteur : <span class="text-primary">Restauration </span></p>
+          <p>Disponibilité : <span class="text-primary">Immédiate (même ce soir) </span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-12">
+        <h5>Vos comptétances</h5>
+        <!--        <app-skill-view [skills]="actor.skills" [relationalId]="actor.id"></app-skill-view>-->
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-12">
+        <h5>Vos prositions d'emplois</h5>
+      </div>
+    </div>
+    <div class="row mt-5 p-1 bg-primary justify-content-center">
+      <div class="card" style="width: 300px">
+        <div class="card-body">
+          <h5 class="card-title">Offre</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Buffalo Grill</h6>
+          <p class="card-text">Poste de serveur en salle</p>
+          <a href="#" class="card-link">Accepter</a>
+          <a href="#" class="card-link">Refuser</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
