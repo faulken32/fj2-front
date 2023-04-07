@@ -1,0 +1,73 @@
+{
+  "applications": ["flashJobs"],
+  "changelogDate": "20230405152552",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "candidate",
+  "fields": [
+    {
+      "fieldName": "userId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "phone",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "valid",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "validUntil",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Candidate",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "candidatePreference",
+      "otherEntityRelationshipName": "candidate",
+      "ownerSide": true,
+      "relationshipName": "candidatePreference",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "cv",
+      "ownerSide": true,
+      "relationshipName": "cv",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "job",
+      "otherEntityRelationshipName": "candidate",
+      "relationshipName": "job",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "application",
+      "otherEntityRelationshipName": "candidate",
+      "relationshipName": "application",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "candidateDisponibility",
+      "otherEntityRelationshipName": "candidate",
+      "relationshipName": "candidateDisponibility",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl",
+  "skipServer": true
+}

@@ -1,0 +1,9 @@
+{
+  "home": {
+    "title": "Flash Job",
+    "subtitle": "This is your homepage",
+    "logged": {
+      "message": "Connecté  \"{{username}}\"."
+    }
+  }
+}

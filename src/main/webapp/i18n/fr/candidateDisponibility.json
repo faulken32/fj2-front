@@ -1,0 +1,26 @@
+{
+  "flashJobsApp": {
+    "candidateDisponibility": {
+      "home": {
+        "title": "Candidate Disponibilities",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Candidate Disponibility",
+        "createOrEditLabel": "Create or edit a Candidate Disponibility",
+        "notFound": "No Candidate Disponibilities found"
+      },
+      "created": "A new Candidate Disponibility is created with identifier {{ param }}",
+      "updated": "A Candidate Disponibility is updated with identifier {{ param }}",
+      "deleted": "A Candidate Disponibility is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Candidate Disponibility {{ id }}?"
+      },
+      "detail": {
+        "title": "Candidate Disponibility"
+      },
+      "id": "ID",
+      "dipoTime": "Dipo Time",
+      "dispoPeriod": "Dispo Period",
+      "candidate": "Candidate"
+    }
+  }
+}

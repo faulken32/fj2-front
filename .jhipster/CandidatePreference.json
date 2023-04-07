@@ -1,0 +1,39 @@
+{
+  "applications": ["flashJobs"],
+  "changelogDate": "20230405152555",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "candidate_preference",
+  "fields": [
+    {
+      "fieldName": "distance",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min", "max"],
+      "fieldValidateRulesMax": "100",
+      "fieldValidateRulesMin": "0"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "CandidatePreference",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "jobSubCat",
+      "otherEntityRelationshipName": "candidatePreference",
+      "relationshipName": "jobSubCat",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "candidate",
+      "otherEntityRelationshipName": "candidatePreference",
+      "ownerSide": false,
+      "relationshipName": "candidate",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "serviceImpl",
+  "skipServer": true
+}

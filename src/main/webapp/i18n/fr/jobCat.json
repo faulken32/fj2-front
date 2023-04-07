@@ -1,0 +1,26 @@
+{
+  "flashJobsApp": {
+    "jobCat": {
+      "home": {
+        "title": "Job Cats",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Job Cat",
+        "createOrEditLabel": "Create or edit a Job Cat",
+        "notFound": "No Job Cats found"
+      },
+      "created": "A new Job Cat is created with identifier {{ param }}",
+      "updated": "A Job Cat is updated with identifier {{ param }}",
+      "deleted": "A Job Cat is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Job Cat {{ id }}?"
+      },
+      "detail": {
+        "title": "Job Cat"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "jobSubCat": "Job Sub Cat"
+    }
+  }
+}

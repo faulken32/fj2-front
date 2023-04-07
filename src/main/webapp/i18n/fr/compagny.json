@@ -1,0 +1,29 @@
+{
+  "flashJobsApp": {
+    "compagny": {
+      "home": {
+        "title": "Compagnies",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Compagny",
+        "createOrEditLabel": "Create or edit a Compagny",
+        "notFound": "No Compagnies found"
+      },
+      "created": "A new Compagny is created with identifier {{ param }}",
+      "updated": "A Compagny is updated with identifier {{ param }}",
+      "deleted": "A Compagny is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Compagny {{ id }}?"
+      },
+      "detail": {
+        "title": "Compagny"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "phone": "Phone",
+      "logoUrl": "Logo Url",
+      "address": "Address",
+      "job": "Job"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "flashJobsApp": {
+    "cv": {
+      "home": {
+        "title": "Cvs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Cv",
+        "createOrEditLabel": "Create or edit a Cv",
+        "notFound": "No Cvs found"
+      },
+      "created": "A new Cv is created with identifier {{ param }}",
+      "updated": "A Cv is updated with identifier {{ param }}",
+      "deleted": "A Cv is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Cv {{ id }}?"
+      },
+      "detail": {
+        "title": "Cv"
+      },
+      "id": "ID",
+      "name": "Name",
+      "updateDate": "Update Date",
+      "format": "Format"
+    }
+  }
+}

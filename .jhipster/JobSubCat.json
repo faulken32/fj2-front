@@ -1,0 +1,46 @@
+{
+  "applications": ["flashJobs"],
+  "changelogDate": "20230405152601",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "job_sub_cat",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "JobSubCat",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "job",
+      "otherEntityRelationshipName": "jobSubCat",
+      "relationshipName": "job",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "jobCat",
+      "otherEntityRelationshipName": "jobSubCat",
+      "relationshipName": "jobCat",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "candidatePreference",
+      "otherEntityRelationshipName": "jobSubCat",
+      "relationshipName": "candidatePreference",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl",
+  "skipServer": true
+}

@@ -1,0 +1,30 @@
+{
+  "applications": ["flashJobs"],
+  "changelogDate": "20230405152558",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "cv",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "updateDate",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "format",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Cv",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl",
+  "skipServer": true
+}
