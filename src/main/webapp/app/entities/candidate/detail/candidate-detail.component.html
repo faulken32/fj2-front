@@ -1,60 +1,48 @@
 <div class="d-flex justify-content-center">
-  <div class="col-8">
+  <div class="col-12">
     <div *ngIf="candidate">
-      <h2 data-cy="candidateDetailsHeading"><span jhiTranslate="flashJobsApp.candidate.detail.title">Candidate</span></h2>
-
-      <hr />
-
       <jhi-alert-error></jhi-alert-error>
 
       <jhi-alert></jhi-alert>
 
-      <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="global.field.id">ID</span></dt>
-        <dd>
-          <span>{{ candidate.id }}</span>
-        </dd>
-        <dt><span jhiTranslate="flashJobsApp.candidate.userId">User Id</span></dt>
-        <dd>
-          <span>{{ candidate.userId }}</span>
-        </dd>
-        <dt><span jhiTranslate="flashJobsApp.candidate.name">Name</span></dt>
-        <dd>
-          <span>{{ candidate.name }}</span>
-        </dd>
-        <dt><span jhiTranslate="flashJobsApp.candidate.phone">Phone</span></dt>
-        <dd>
-          <span>{{ candidate.phone }}</span>
-        </dd>
-        <dt><span jhiTranslate="flashJobsApp.candidate.valid">Valid</span></dt>
-        <dd>
-          <span>{{ candidate.valid }}</span>
-        </dd>
-        <dt><span jhiTranslate="flashJobsApp.candidate.validUntil">Valid Until</span></dt>
-        <dd>
-          <span>{{ candidate.validUntil | formatMediumDatetime }}</span>
-        </dd>
-        <dt><span jhiTranslate="flashJobsApp.candidate.candidatePreference">Candidate Preference</span></dt>
-        <dd>
-          <div *ngIf="candidate.candidatePreference">
-            <a [routerLink]="['/candidate-preference', candidate.candidatePreference.id, 'view']">{{ candidate.candidatePreference.id }}</a>
-          </div>
-        </dd>
-        <dt><span jhiTranslate="flashJobsApp.candidate.cv">Cv</span></dt>
-        <dd>
-          <div *ngIf="candidate.cv">
-            <a [routerLink]="['/cv', candidate.cv.id, 'view']">{{ candidate.cv.name }}</a>
-          </div>
-        </dd>
-      </dl>
-
-      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
-      </button>
-
-      <button type="button" [routerLink]="['/candidate', candidate.id, 'edit']" class="btn btn-primary">
-        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
-      </button>
+      <!--      <dl class="row-md jh-entity-details">-->
+      <!--        <dt><span jhiTranslate="global.field.id">ID</span></dt>-->
+      <!--        <dd>-->
+      <!--          <span>{{ candidate.id }}</span>-->
+      <!--        </dd>-->
+      <!--        <dt><span jhiTranslate="flashJobsApp.candidate.userId">User Id</span></dt>-->
+      <!--        <dd>-->
+      <!--          <span>{{ candidate.userId }}</span>-->
+      <!--        </dd>-->
+      <!--        <dt><span jhiTranslate="flashJobsApp.candidate.name">Name</span></dt>-->
+      <!--        <dd>-->
+      <!--          <span>{{ candidate.name }}</span>-->
+      <!--        </dd>-->
+      <!--        <dt><span jhiTranslate="flashJobsApp.candidate.phone">Phone</span></dt>-->
+      <!--        <dd>-->
+      <!--          <span>{{ candidate.phone }}</span>-->
+      <!--        </dd>-->
+      <!--        <dt><span jhiTranslate="flashJobsApp.candidate.valid">Valid</span></dt>-->
+      <!--        <dd>-->
+      <!--          <span>{{ candidate.valid }}</span>-->
+      <!--        </dd>-->
+      <!--        <dt><span jhiTranslate="flashJobsApp.candidate.validUntil">Valid Until</span></dt>-->
+      <!--        <dd>-->
+      <!--          <span>{{ candidate.validUntil | formatMediumDatetime }}</span>-->
+      <!--        </dd>-->
+      <!--        <dt><span jhiTranslate="flashJobsApp.candidate.candidatePreference">Candidate Preference</span></dt>-->
+      <!--        <dd>-->
+      <!--          <div *ngIf="candidate.candidatePreference">-->
+      <!--            <a [routerLink]="['/candidate-preference', candidate.candidatePreference.id, 'view']">{{ candidate.candidatePreference.id }}</a>-->
+      <!--          </div>-->
+      <!--        </dd>-->
+      <!--        <dt><span jhiTranslate="flashJobsApp.candidate.cv">Cv</span></dt>-->
+      <!--        <dd>-->
+      <!--          <div *ngIf="candidate.cv">-->
+      <!--            <a [routerLink]="['/cv', candidate.cv.id, 'view']">{{ candidate.cv.name }}</a>-->
+      <!--          </div>-->
+      <!--        </dd>-->
+      <!--      </dl>-->
     </div>
   </div>
 </div>
@@ -67,6 +55,7 @@
       </div>
 
       <div class="col-6 text-right">
+        img :: {{ candidate!.user!.imageUrl }}
         <img class="rounded-pill" width="50px" src="../../../../assets/moi.png" />
       </div>
     </div>
@@ -86,6 +75,7 @@
       <div class="col-12">
         <div class="mt-5">
           <p>Mail : <span class="text-primary"> </span></p>
+          {{ candidate!.user!.email }}
           <!--          <p *ngIf="candidate.status">Status :-->
           <!--            <span class="badge badge-primary p-1">-->
           <!--                 Actif-->
@@ -99,17 +89,27 @@
             Numéro de téléphone : <span class="text-primary">{{ candidate!.phone }}</span>
           </p>
           <p>Adresse : <span class="text-primary"></span></p>
+          <p>Votre adresse</p>
 
-          <!--          <p>Zone de recherche: <span class="text-primary"></span>-->
-          <!--            <span *ngIf="candidate.searchDep">-->
-          <!--                <span class="badge badge-primary">{{actor.fc.features[0].properties.postcode.substr(0 , 2 )}}</span>-->
-          <!--            </span>-->
-          <!--            <span *ngIf="candidate.searchCity">-->
-          <!--                <span class="badge badge-primary">{{actor.fc.features[0].properties.city}}</span>-->
-          <!--            </span>-->
+          <p>{{ candidate!.address!.street }}</p>
+          <p>{{ candidate!.address!.zipcode }}</p>
+          <p>{{ candidate!.address!.city }}</p>
 
-          <!--            <span class="badge badge-primary">{{actor.searchKm}}Km</span>-->
-          <!--          </p>-->
+          <p>
+            Zone de recherche:
+            <span class="text-primary">
+              <p>{{ candidate!.candidatePreference!.distance }} km</p>
+            </span>
+            <!--            <span *ngIf="candidate.searchDep">-->
+            <!--                <span class="badge badge-primary">{{actor.fc.features[0].properties.postcode.substr(0 , 2 )}}</span>-->
+            <!--            </span>-->
+            <!--            <span *ngIf="candidate.searchCity">-->
+            <!--                <span class="badge badge-primary">{{actor.fc.features[0].properties.city}}</span>-->
+            <!--            </span>-->
+
+            <!--            <span class="badge badge-primary">{{actor.searchKm}}Km</span>-->
+            <!--          </p>-->
+          </p>
         </div>
       </div>
     </div>
@@ -131,21 +131,28 @@
       </div>
     </div>
 
-    <div class="row mt-5">
-      <div class="col-12">
-        <h5>Vos prositions d'emplois</h5>
-      </div>
-    </div>
-    <div class="row mt-5 p-1 bg-primary justify-content-center">
-      <div class="card" style="width: 300px">
-        <div class="card-body">
-          <h5 class="card-title">Offre</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Buffalo Grill</h6>
-          <p class="card-text">Poste de serveur en salle</p>
-          <a href="#" class="card-link">Accepter</a>
-          <a href="#" class="card-link">Refuser</a>
-        </div>
-      </div>
-    </div>
+    <!--    <div class="row mt-5">-->
+    <!--      <div class="col-12">-->
+    <!--        <h5>Vos prositions d'emplois</h5>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--    <div class="row mt-5 p-1 bg-primary justify-content-center">-->
+    <!--      <div class="card" style="width: 300px">-->
+    <!--        <div class="card-body">-->
+    <!--          <h5 class="card-title">Offre</h5>-->
+    <!--          <h6 class="card-subtitle mb-2 text-muted">Buffalo Grill</h6>-->
+    <!--          <p class="card-text">Poste de serveur en salle</p>-->
+    <!--          <a href="#" class="card-link">Accepter</a>-->
+    <!--          <a href="#" class="card-link">Refuser</a>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+      <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+    </button>
+
+    <!--    <button type="button" [routerLink]="['/candidate', candidate.id, 'edit']" class="btn btn-primary">-->
+    <!--      <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>-->
+    <!--    </button>-->
   </div>
 </div>
