@@ -1,6 +1,8 @@
 export interface IUser {
   id: number;
   login?: string;
+  imageUrl?:string;
+  email?:string;
 }
 
 export class User implements IUser {
